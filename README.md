@@ -1,3 +1,27 @@
+Boilerplate project intend to make my life easier :D
+
+## Using windows IIS:
+Routing issue: conflict between iis routing and react-router-dom, need a Web.config with following tag:
+```
+ <configuration>
+ <system.webServer>
+    <rewrite>
+      <rules>
+        <rule name="Rewrite Text Requests" stopProcessing="true">
+          <match url=".*" />
+          <conditions>
+            <add input="{HTTP_METHOD}" pattern="^GET$" />
+            <add input="{HTTP_ACCEPT}" pattern="^text/html" />
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+          </conditions>
+          <action type="Rewrite" url="/index.html" />
+        </rule>
+      </rules>
+    </rewrite>
+</system.webServer>
+</configuration>
+```
+****************************************************
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
